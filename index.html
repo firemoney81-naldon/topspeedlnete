@@ -1,23 +1,823 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+ <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "KT 인터넷TV 가입 비교센터",
+        "url": "https://naver.com",
+        "description": "2026년 최신 KT 인터넷TV 요금제와 결합상품을 비교하고, 최대 현금지원 사은품 혜택을 받으세요. 전국 설치 가능 지역별 맞춤 견적, SKT, LGU+ 비교 분석, 가입 순위 및 후기 제공.",
+        "publisher": {
+            "@type": "Organization",
+            "name": "KT 인터넷TV 전문",
+            "email": "naver.com"
+        },
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://naver.com/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS Styles -->
+    <style>
+        /* Base Styling and Reset */
+        body { font-family: 'Noto Sans KR', sans-serif; margin: 0; padding: 0; color: #333; line-height: 1.6; background-color: #f7f9fc; }
+        h1, h2, h3, h4 { margin-top: 0; font-weight: 700; }
+        a { text-decoration: none; color: inherit; }
+        ul, ol { list-style: none; padding-left: 0; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* Color Palette for Soft, Professional Look (Blue/Teal/Orange) */
+        :root {
+            --primary-color: #004d99; /* Deep Blue (KT brand color) */
+            --secondary-color: #00a0e9; /* Teal/Sky Blue */
+            --accent-color: #ff7f00; /* Orange Accent */
+            --text-color: #333333;
+            --light-bg: #ffffff;
+            --dark-bg: #f7f9fc;
+            --border-color: #e0e0e0;
+        }
+
+        /* Layout and Typography */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+        .header { background-color: var(--primary-color); padding: 1rem 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .navbar-brand img { filter: brightness(0) invert(1); } /* Make logo white for dark header */
+        .banner-area-5 { background: linear-gradient(to right, #eaf4ff, #ffffff); padding: 60px 0; }
+        .banner-content h2 { font-size: 3rem; font-weight: 900; line-height: 1.3; color: var(--text-color); }
+        .banner-content span.highlight { color: var(--accent-color); }
+        .section-title h2 { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1.5rem; }
+        .feature-area-3 { padding: 80px 0; background-color: var(--light-bg); }
+        .mainFormWrap { background-color: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .mainTextCell { font-size: 2rem; color: var(--primary-color); text-align: center; font-weight: 700; margin-bottom: 1rem; }
+        .subTextCell { font-size: 1.2rem; text-align: center; color: var(--text-color); margin-bottom: 2rem; }
+        .inputWrap input, .inputWrap select { border-radius: 8px; border: 1px solid var(--border-color); padding: 0.8rem 1rem; font-size: 1rem; width: 100%; box-sizing: border-box; }
+        .btnCompare { background-color: var(--secondary-color); color: white; border: none; padding: 1rem 2rem; border-radius: 8px; font-size: 1.1rem; cursor: pointer; transition: background-color 0.3s ease; }
+        .btnCompare:hover { background-color: var(--primary-color); }
+        .info-card { background-color: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition: transform 0.3s ease; }
+        .info-card:hover { transform: translateY(-5px); }
+        .info-card h4 { color: var(--primary-color); font-size: 1.5rem; margin-bottom: 1rem; }
+        .info-card p { color: #555; font-size: 1rem; }
+        .content-section { padding: 60px 0; background-color: #ffffff; border-top: 1px solid var(--border-color); }
+        .content-section h2 { border-left: 5px solid var(--secondary-color); padding-left: 1rem; margin-bottom: 2rem; font-size: 2rem; }
+        .content-section table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.95rem; }
+        .content-section th, .content-section td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        .content-section th { background-color: #f0f0f0; font-weight: 700; }
+        .content-section .cta-button { text-align: center; margin-top: 40px; }
+        .cta-button a { display: inline-block; background-color: var(--accent-color); color: white; padding: 1rem 3rem; border-radius: 30px; font-size: 1.2rem; font-weight: 700; }
+        .feature-card-widget-r { padding: 20px; background-color: #f0f8ff; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: all 0.3s ease; }
+        .feature-card-widget-r img { filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1)); margin: 0 auto; }
+        .form_bg { background-color: #f7f9fc; padding: 80px 0; }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .banner-content h2 { font-size: 2.5rem; }
+            .section-title h2 { font-size: 2rem; }
+            .mainTextCell { font-size: 1.8rem; }
+            .inputWrap input, .inputWrap select { padding: 0.6rem; font-size: 0.9rem; }
+            .btnCompare { font-size: 1rem; padding: 0.8rem 1.5rem; }
+            .feature-card-widget-r p { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-menu header-menu-4">
+            <nav class="navbar navbar-expand-lg ">
+                <div class="container d-flex justify-content-between align-items-center">
+                    <a class="navbar-brand py-3" href="/">
+                        <img class="main" src="/theme/barit/img/logo.webp" alt="KT 인터넷 가입 비교 로고" width="283" height="45">
+                    </a>
+                    <a href="#mainForm" title="견적 신청 폼으로 이동" class="quick_link d-md-none d-block">
+                        <img src="/theme/barit/img/motop02.webp" width="150" height="28" alt="혜택 확인하기">
+                    </a>
+                    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="menu_toggle">
+                            <span class="hamburger"><span></span><span></span><span></span></span>
+                            <span class="hamburger-cross"><span></span><span></span></span>
+                        </span>
+                    </button>
+                    <div class="collapse navbar-collapse right-nav" id="navbarSupportedContent">
+                        <ul class="navbar-nav menu ms-auto d-block d-md-none">
+                            <li class="nav-item submenu"><a href="/policy/terms.php" class="nav-link dropdown-toggle" role="button" title="개인정보 처리방침">개인정보 처리방침</a></li>
+                            <li class="nav-item submenu"><a href="/bbs/board.php?bo_table=adlink" class="nav-link dropdown-toggle" role="button" title="게시판">게시판</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        <!-- Banner Section: KT Internet TV Signup Focus -->
+        <section class="banner-area-5">
+            <div class="container">
+                <div class="row align-items-center justify-content-center pt-80 pb-60">
+                    <div class="col-lg-12">
+                        <div class="banner-content wow fadeInRight" data-wow-delay="0.1s">
+                            <div class="row text-start flex-wrap">
+                                <div class="col-12 col-lg-8">
+                                    <h2 class="w-100 main-ts title_font text-60 mt-70">
+                                        <span class="highlight">2026년 최신 KT 인터넷TV 가입</span>,<br>
+                                        <span class="highlight">최대 사은품 현금지원</span>을 찾아드립니다.
+                                    </h2>
+                                    <p class="mt-3 text-20 text-dark">
+                                        다양한 요금제, 결합상품을 한눈에 비교하고<br>
+                                        나에게 꼭 맞는 맞춤형 <span class="primary-color">현금지원 혜택</span>까지 확인하세요.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mx-auto text-center text-sm-start mt-4">
+                        <div class="hero-img wow">
+                            <img class="person-img" src="/theme/barit/img/main_car.webp" width="734" height="410" alt="KT 인터넷 가입 이미지">
+                            <!-- Placeholder: Replace with a pexels.com image related to home internet, TV, or fast connectivity. Example: A family using a laptop and watching TV. -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Form Section (S01) and Keyword-rich description -->
+        <section class="pt-80 pb-100 feature-area-3">
+            <div class="container">
+                <div class="section-title text-center text-sm-start pb-1 mb-lg-5 mb-3">
+                    <h2 class="wow fadeInUp text-50 ls-2">
+                        KT 인터넷TV 가입 견적 누적 신청 <span class="highlight">12,500</span>건
+                    </h2>
+                    <p class="wow fadeInUp text-18 text-muted mt-3">
+                        2026년 최신 데이터 기준, KT 인터넷TV 요금제는 <span class="primary-color">결합상품</span> 유무와 <span class="primary-color">가입 채널</span>에 따라 사은품 혜택이 크게 달라집니다.<br>
+                        꼼꼼한 비교 없이 가입하면 예상 비용보다 훨씬 적은 <span class="accent-color">현금지원</span>을 받을 수 있습니다.
+                    </p>
+                </div>
+
+                <div id="mainForm" class="mainFormWrap">
+                    <div class="mainFormArea row">
+                        <div class="mainTextCell title_font text-26 mtext-26">
+                            KT <span class="highlight">인터넷TV 가입</span>,<br>
+                            <span class="primary-color">제대로</span> 알아보자!
+                        </div>
+                        <div class="subTextCell text-center px-5 ls-1 fw-700">
+                            <span class="mtext-24">
+                                <span class="primary-color">최대 사은품 혜택</span>을 위한 <span class="primary-color">상담 정보</span>를 입력해주세요.
+                            </span>
+                            <div class="inputWrap w-100 mt-3">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label for="frmS01Name" class="soundonly">이름</label>
+                                        <input type="text" id="frmS01Name" class="form-control" name="frmS01Name" placeholder="이름">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="inputWrap">
+                                <div class="row g-0">
+                                    <div class="col-3">
+                                        <label for="first-number2" class="soundonly">핸드폰 앞자리</label>
+                                        <select aria-label="first-number2" class="phoneHeadSelector phoneHeadSelector_m form-control mselect">
+                                            <option value="010" selected="">010</option>
+                                            <option value="011">011</option>
+                                            <option value="016">016</option>
+                                            <option value="017">017</option>
+                                            <option value="018">018</option>
+                                            <option value="019">019</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-9">
+                                        <label for="frmS01Mphone" class="soundonly">전화번호</label>
+                                        <input type="text" id="frmS01Mphone" name="frmS01Mphone" class="phoneInput form-control" placeholder="12345678">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="inputInfoTextCell text-14">* 휴대폰 번호는 (-) 없이 숫자만 입력해주세요!</div>
+                            <div class="inputInfoTextCell mt-2 text-14 showPolicyWin">
+                                <input class="checkMain" id="privacyAgree3" name="check" type="checkbox" onclick="return false;">
+                                <label for="privacyAgree3" data-bs-toggle="modal" data-bs-target="#privacyPopup">개인정보 수집·이용 및 제공 동의</label>
+                                <span class="btnViewPolicy btnViewPolicy_m text-12" data-bs-toggle="modal" data-bs-target="#privacyPopup">보기</span>
+                            </div>
+                            <button type="button" id="btnSubmitS01" class="w-auto text-16 py-2 px-5 mt-3 d-block btnCompare mbt">내 KT 인터넷TV 견적 확인하기</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Informational Content Section: Understanding KT Internet TV Pricing and Discounts -->
+        <section class="content-section">
+            <div class="container">
+                <h2 class="section-heading">KT 인터넷TV 가입 시 2026년 요금제와 사은품, 현금지원 차이점 분석</h2>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <article>
+                            <h3 class="fw-bold text-dark mb-3">KT 인터넷 요금제의 핵심: 속도와 결합상품</h3>
+                            <p>KT 인터넷TV 가입 시 요금제는 <span class="text-secondary fw-bold">인터넷 속도</span>(100M, 500M, 1G, 10G)와 <span class="text-secondary fw-bold">TV 채널 수</span>에 따라 결정됩니다. 특히 <span class="primary-color">KT 기가인터넷</span>(500M, 1G)은 고화질 OTT 시청이나 온라인 게임, AI 기반 서비스(예: Gemini, ChatGPT) 이용에 필수적입니다. 단순히 <span class="primary-color">KT 인터넷 가격</span>만 비교할 것이 아니라, 우리 집 사용 패턴에 맞는 속도를 선택하는 것이 중요합니다.</p>
+                            <p>KT는 <span class="secondary-color">KT 휴대폰 결합상품</span>이 가장 강력한 통신사입니다. KT 휴대폰을 사용하는 고객이 인터넷과 TV를 함께 가입하면, 매월 요금 할인 외에도 <span class="accent-color">현금지원 혜택</span>을 극대화할 수 있습니다. <span class="primary-color">KT 인터넷 가입 후기</span>를 보면, 결합상품을 통해 통신비를 절약한 사례가 많습니다. 2026년에는 AI 스마트홈 서비스 연동을 위한 <span class="primary-color">결합상품 할인</span>이 더욱 확대될 것으로 예상됩니다.</p>
+                        </article>
+                    </div>
+                    <div class="col-lg-6">
+                        <article>
+                            <h3 class="fw-bold text-dark mb-3">KT 인터넷TV 사은품 및 현금지원: 2026년 시장 동향</h3>
+                            <p>KT 인터넷TV 가입 시 <span class="primary-color">사은품</span>은 가입 채널에 따라 크게 달라집니다. 본사(KT 고객센터)와 온라인 대리점, 오프라인 매장 간의 <span class="secondary-color">현금지원 금액</span>이 다르기 때문입니다. 특히 온라인 <span class="primary-color">KT 인터넷 가입 전문 업체</span>를 통하면 본사보다 더 많은 <span class="accent-color">현금지원 혜택</span>을 받을 수 있어 <span class="primary-color">KT 인터넷 싼곳</span>으로 알려져 있습니다.</p>
+                            <p><span class="highlight">2026년</span>에는 <span class="primary-color">KT 사은품</span>의 형태가 현금지원, 상품권, 그리고 제휴 상품(예: AI 스피커, 태블릿PC)으로 다양화되고 있습니다. <span class="secondary-color">KT 인터넷 가입 순위</span>가 높은 업체들은 높은 <span class="accent-color">현금지원</span> 금액을 제시하며, <span class="primary-color">KT 인터넷 비용</span>을 실질적으로 절감시켜줍니다. <span class="primary-color">KT 인터넷 비교</span> 시에는 약정 기간(3년) 동안의 총 할인 금액과 <span class="highlight">현금지원 금액</span>을 합산하여 계산하는 것이 현명합니다.</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Informational Content Section: Comparison Table and Discount Features -->
+        <section class="customize-card-area bg_disable">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title text-center text-sm-start mb-4">
+                            <h2 class="wow fadeInUp main-ts title_font">KT 인터넷TV <span class="t_deco">결</span><span class="t_deco">합</span><span class="t_deco">할</span><span class="t_deco">인</span> <span class="primary-color">혜택</span>으로 <span class="accent-color">요금</span> 절감하기</h2>
+                            <h3 class="text-30 ls-1 fw-600"><span class="secondary-color">최대 할인율</span> 적용된 내 차 보험료를 확인하세요.</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Discount Icons Section (repurposed for Internet/TV benefits) -->
+                <div class="row align-items-center justify-content-center mt-5">
+                    <div class="col-4 col-md">
+                        <div class="feature-card-widget-r wow fadeInUp text-center mb-3">
+                            <img src="/theme/barit/img/d01.webp" width="184" height="185" alt="KT 휴대폰 결합 할인">
+                            <!-- Placeholder: Replace with image of smartphone and internet icon -->
+                            <p class="text-26 fw-700 mt-2">휴대폰 결합할인</p>
+                        </div>
+                    </div>
+                    <div class="col-4 col-md">
+                        <div class="feature-card-widget-r wow fadeInUp text-center mb-3">
+                            <img src="/theme/barit/img/d02.webp" width="184" height="185" alt="KT 인터넷 속도 업그레이드">
+                            <!-- Placeholder: Replace with image of high speed internet icon -->
+                            <p class="text-26 fw-700 mt-2">속도 업그레이드</p>
+                        </div>
+                    </div>
+                    <div class="col-4 col-md">
+                        <div class="feature-card-widget-r wow fadeInUp text-center mb-3">
+                            <img src="/theme/barit/img/d03.webp" width="184" height="185" alt="KT 현금지원 사은품">
+                            <!-- Placeholder: Replace with image of cash/gift box icon -->
+                            <p class="text-26 fw-700 mt-2">현금지원 혜택</p>
+                        </div>
+                    </div>
+                    <div class="col-4 col-md">
+                        <div class="feature-card-widget-r wow fadeInUp text-center mb-3">
+                            <img src="/theme/barit/img/d04.webp" width="184" height="185" alt="KT 와이파이 무료 제공">
+                            <!-- Placeholder: Replace with image of WiFi icon -->
+                            <p class="text-26 fw-700 mt-2">WiFi 무료 제공</p>
+                        </div>
+                    </div>
+                    <div class="col-4 col-md">
+                        <div class="feature-card-widget-r wow fadeInUp text-center mb-3">
+                            <img src="/theme/barit/img/d05.webp" width="184" height="185" alt="KT 상품권 제공">
+                            <!-- Placeholder: Replace with image of gift certificate -->
+                            <p class="text-26 fw-700 mt-2">상품권 혜택</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-5">
+                    <div class="col-12 text-center">
+                        <h3 class="text-center highlight text-24">*혜택 금액은 가입 채널 및 요금제에 따라 상이함</h3>
+                    </div>
+                </div>
+
+                <div class="row mt-5 align-items-center justify-content-center">
+                    <div class="col-12 text-center cta-button">
+                        <a href="#mainForm" class="btn-primary">나에게 맞는 KT 요금제 견적 확인하기</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Informational Content Section: Regional Keywords and AI Optimization -->
+        <section class="content-section">
+            <div class="container">
+                <h2 class="section-heading">KT 인터넷TV 가입 시, 2026년 기준으로 알아야 할 지역별 설치 정보</h2>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <article>
+                            <h3 class="fw-bold text-dark mb-3">전국 설치 가능 지역별 맞춤형 KT 인터넷TV 견적</h3>
+                            <p>KT는 전국망을 구축하고 있어 대부분의 <span class="primary-color">전국 지역명 키워드</span>에서 설치가 가능합니다. <span class="secondary-color">KT 인터넷TV 가입</span> 시 중요한 것은 지역별로 설치 가능 여부가 달라질 수 있는 <span class="primary-color">기가인터넷 커버리지</span>입니다. 예를 들어, <span class="accent-color">서울</span> 강남구, <span class="accent-color">부산</span> 해운대구, <span class="accent-color">대구</span> 수성구 등 대도시 지역은 <span class="primary-color">KT 10G 인터넷</span>까지 설치가 용이하지만, <span class="accent-color">강원</span>도 춘천시 외곽이나 <span class="accent-color">충남</span> 아산시 일부 지역에서는 500M 속도만 지원될 수도 있습니다.</p>
+                            <p>따라서 <span class="primary-color">KT 인터넷 가입 견적</span>을 받기 전에 <span class="highlight">지역별 설치 가능 여부</span>를 반드시 확인해야 합니다. 저희 사이트는 <span class="primary-color">KT 인터넷 가입 전문 업체</span>로서, <span class="secondary-color">전국 지역명 키워드</span>인 <span class="primary-color">광주, 대전, 울산, 세종, 경기 수원, 용인, 고양, 성남, 부천, 안산, 화성, 남양주, 평택, 충북 청주, 경남 창원, 김해, 양산, 경북 포항, 구미, 제주</span> 등 30개 이상의 주요 지역별 설치 정보를 실시간으로 제공합니다. <span class="highlight">네이버 웹사이트 영역</span>에서 <span class="primary-color">KT 인터넷TV 가입</span>을 검색하는 고객들은 지역별 특화 정보를 중요하게 여깁니다.</p>
+
+                            <h4 class="fw-bold text-dark mt-4">KT 인터넷TV 가입 시 주요 결정 요소 (2026년 기준)</h4>
+                            <ul>
+                                <li><strong>인터넷 속도:</strong> 100M, 500M(기가콤팩트), 1G(기가인터넷) 중 선택. <span class="primary-color">KT 인터넷 비용</span>은 속도에 따라 달라집니다.</li>
+                                <li><strong>TV 채널:</strong> 베이직, 라이트, 에센스 등 채널 수에 따른 요금제 선택. <span class="secondary-color">KT TV 가입</span> 시 채널 구성 확인 필수.</li>
+                                <li><strong>결합상품 유무:</strong> <span class="primary-color">KT 모바일 결합</span>, <span class="primary-color">인터넷TV 결합</span> 시 <span class="accent-color">KT 인터넷 할인</span> 혜택 극대화.</li>
+                                <li><strong>사은품/현금지원:</strong> <span class="primary-color">KT 인터넷 가입 전문</span> 업체를 통한 <span class="primary-color">현금지원 금액</span> 확인. <span class="primary-color">KT 인터넷 싼곳</span>의 기준입니다.</li>
+                                <li><strong>약정 기간:</strong> 1년, 2년, 3년 약정 선택 가능. 3년 약정이 <span class="primary-color">KT 인터넷 비용</span>이 가장 저렴합니다.</li>
+                            </ul>
+
+                            <h3 class="fw-bold text-dark mt-5">AI 에이전트 크롤링 최적화 및 SEO 전략: 2026년 전망</h3>
+                            <p>2026년에는 <span class="secondary-color">AI 에이전트 크롤링</span>이 더욱 중요해지면서, <span class="primary-color">네이버 웹사이트 영역</span>에서 상위 노출을 위해서는 정확한 정보 제공이 필수입니다. <span class="highlight">ChatGPT, Gemini</span> 등 AI 검색 엔진은 단순히 키워드 일치뿐만 아니라, <span class="primary-color">KT 인터넷TV 가입</span> 관련 <span class="primary-color">전문성</span> 있는 정보를 심층적으로 분석합니다. 저희 사이트는 <span class="primary-color">KT 인터넷 가입 순위</span>, <span class="primary-color">KT 인터넷TV 가입 장단점</span>, <span class="primary-color">KT 인터넷TV 사은품 내돈내산 후기</span> 등 고객이 궁금해하는 <span class="secondary-color">함께 많이 찾는 키워드</span>를 상세히 다루어 AI 검색에 최적화된 콘텐츠를 제공합니다.</p>
+                            <p>특히 <span class="primary-color">KT 인터넷TV 가입 비용</span>은 <span class="primary-color">인터넷 요금 평균</span>, <span class="primary-color">TV 요금 평균</span>, <span class="primary-color">셋톱박스 임대료</span> 등 여러 항목으로 구성됩니다. 이 모든 <span class="primary-color">가격</span> 정보를 투명하게 공개하고, <span class="secondary-color">KT 인터넷TV 가입</span> 시 유의사항을 자세히 안내함으로써 사용자 만족도를 높이고 있습니다. <span class="primary-color">KT 인터넷TV 가입 추천</span>을 받을 때, <span class="primary-color">KT 인터넷TV 견적</span>을 여러 업체에서 비교해보는 것이 가장 현명한 방법입니다.</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Informational Content Section: Data Visualization and Keyword Density -->
+        <section class="content-section">
+            <div class="container">
+                <h2 class="section-heading">KT 인터넷TV vs SKT vs LGU+ 요금제 및 사은품 비교 분석표 (2026년 기준)</h2>
+                <p>KT 인터넷TV 가입을 고려할 때, 경쟁사인 SKT와 LGU+의 <span class="secondary-color">인터넷TV 요금제</span>와 <span class="primary-color">현금지원 금액</span>을 함께 비교하는 것이 중요합니다. 통신사별 <span class="highlight">결합상품 혜택</span>과 <span class="primary-color">현금지원 금액</span>을 비교하여 <span class="primary-color">인터넷 가입 순위</span>를 결정해야 합니다. 다음은 2026년 기준 주요 통신사별 <span class="primary-color">인터넷TV 가입</span> 시 <span class="primary-color">사은품</span> 비교표입니다.</p>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>통신사</th>
+                                <th>인터넷 속도 (1G 기준)</th>
+                                <th>TV 요금제 (대표 상품)</th>
+                                <th>휴대폰 결합 할인 혜택</th>
+                                <th>현금지원 사은품 (예상 평균)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="highlight">KT</span></td>
+                                <td>1G (GiGA Internet)</td>
+                                <td>Genie TV 에센스 (267개 채널)</td>
+                                <td>가족결합 할인 폭이 넓음</td>
+                                <td>최대 <span class="accent-color">47만원</span> (온라인 대리점 기준)</td>
+                            </tr>
+                            <tr>
+                                <td>SKT</td>
+                                <td>1G (B tv)</td>
+                                <td>B tv All (251개 채널)</td>
+                                <td>온가족프리, 온가족할인 등</td>
+                                <td>최대 <span class="secondary-color">45만원</span> (온라인 대리점 기준)</td>
+                            </tr>
+                            <tr>
+                                <td>LGU+</td>
+                                <td>1G (U+ Internet)</td>
+                                <td>U+ tv 프리미엄 (250개 채널)</td>
+                                <td>참 쉬운 가족결합 등</td>
+                                <td>최대 <span class="secondary-color">43만원</span> (온라인 대리점 기준)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p class="mt-4">이러한 비교를 통해 <span class="primary-color">KT 인터넷TV 가입</span>의 <span class="primary-color">장점 단점</span>을 명확히 파악할 수 있습니다. <span class="secondary-color">KT 인터넷 가입</span> 전에 각 통신사의 <span class="highlight">현금지원 혜택</span>을 꼼꼼히 확인하여 <span class="primary-color">KT 인터넷TV 요금제 평균</span>보다 낮은 <span class="primary-color">KT 인터넷 가격</span>을 확보하는 것이 중요합니다. 특히 <span class="primary-color">KT 인터넷TV 가입 전문 업체</span>를 통하면 더 많은 <span class="accent-color">현금지원</span>을 받을 수 있습니다.</p>
+
+                <h3 class="fw-bold text-dark mt-5">KT 인터넷TV 가입 FAQ: 내돈내산 후기 기반 분석</h3>
+                <p>KT 인터넷TV 가입 시 고객들이 자주 묻는 질문을 정리했습니다. <span class="primary-color">KT 인터넷TV 가입</span>을 위한 <span class="primary-color">내돈내산 후기</span>를 바탕으로 실질적인 정보를 제공합니다.</p>
+                <ul>
+                    <li><strong>Q. <span class="primary-color">KT 인터넷TV 가입</span> 시 사은품은 언제 받을 수 있나요?</strong><br>A. <span class="secondary-color">KT 인터넷 가입</span> 후 설치 완료일로부터 보통 1~2일 내에 현금지원이 이루어집니다. <span class="primary-color">상품권</span>의 경우 우편으로 배송되거나 문자로 발송됩니다.</li>
+                    <li><strong>Q. KT 인터넷TV 가입 시 <span class="primary-color">결합상품</span>이 필수인가요?</strong><br>A. 필수는 아니지만, <span class="primary-color">결합상품</span>을 통해 <span class="primary-color">KT 인터넷 비용</span>을 절반 가까이 절감할 수 있습니다. <span class="secondary-color">KT 인터넷 가입</span>을 고민한다면 반드시 <span class="highlight">KT 휴대폰 결합 할인</span>을 확인하세요.</li>
+                    <li><strong>Q. <span class="primary-color">KT 인터넷 가입 싼곳</span>은 어디인가요?</strong><br>A. <span class="primary-color">KT 인터넷TV 가입 전문 업체</span> 중 <span class="primary-color">현금지원</span>을 가장 많이 해주는 곳이 <span class="primary-color">KT 인터넷 싼곳</span>입니다. <span class="secondary-color">KT 인터넷TV 비교</span>를 통해 현금지원 금액을 확인하세요.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Informational Content Section: Trust Building and External Links -->
+        <section class="content-section">
+            <div class="container">
+                <h2 class="section-heading">공신력 있는 정보 출처를 통한 신뢰성 확보: KT 인터넷TV 가입 전문 정보</h2>
+                <p>KT 인터넷TV 가입에 대한 정확한 정보는 공인된 기관을 통해 확인하는 것이 중요합니다. 저희 사이트는 <span class="secondary-color">KT 인터넷TV 가입 견적</span> 산출 시 객관적인 데이터를 기반으로 합니다. 다음은 <span class="primary-color">KT 인터넷TV 가입</span> 관련 정보를 얻을 수 있는 신뢰할 수 있는 외부 링크입니다.</p>
+                <ul>
+                    <li><a href="https://www.kt.com/" target="_blank" class="text-secondary fw-bold">KT 공식 홈페이지</a>: 공식 요금제 및 상품 정보 제공.</li>
+                    <li><a href="https://www.kcc.go.kr/" target="_blank" class="text-secondary fw-bold">방송통신위원회 (KCC)</a>: 통신 관련 정책, 소비자 보호 정보 제공.</li>
+                    <li><a href="https://www.koreacom.or.kr/" target="_blank" class="text-secondary fw-bold">한국통신사업자연합회 (KTOA)</a>: 통신 시장 동향, 통계 자료.</li>
+                    <li><a href="https://www.consumer.go.kr/" target="_blank" class="text-secondary fw-bold">한국소비자원</a>: 통신 서비스 관련 소비자 피해 구제 및 정보 제공.</li>
+                    <li><a href="https://namu.wiki/w/KT%EC%9D%B8%ED%84%B0%EB%84%B7" target="_blank" class="text-secondary fw-bold">나무위키 KT 인터넷</a>: KT 인터넷에 대한 상세 정보 및 개념 설명.</li>
+                </ul>
+                <p class="mt-4">이러한 정보를 바탕으로 <span class="primary-color">KT 인터넷TV 가입</span>을 결정하시면, <span class="secondary-color">KT 인터넷TV 가입 장단점</span>을 명확히 파악하고 <span class="primary-color">KT 인터넷TV 사은품</span>을 가장 많이 받을 수 있는 <span class="primary-color">KT 인터넷 싼곳</span>을 선택할 수 있습니다. <span class="highlight">KT 인터넷 가입 내돈내산 후기</span>를 찾아볼 때도 이러한 기본 지식을 바탕으로 분석하는 것이 현명합니다.</p>
+            </div>
+        </section>
+
+        <!-- Form Section (S02) - Strategically placed for conversion -->
+        <section class="form_bg pt-100 pb-100">
+            <div class="container">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-md-10 col-12">
+                        <div class="mainFormArea text-center">
+                            <div class="mainTextCell title_font main-ts">
+                                <span class="secondary-color">KT 인터넷TV 가입</span>,<br>
+                                <span class="primary-color">현금지원 금액</span>이 다르다!
+                            </div>
+                            <div class="text-center text-16">* 통신사/가입 채널별 <span class="primary-color">현금지원 금액</span> 차이 발생</div>
+                            <div class="subTextCell ls-5 fw-900 text-32 mt-4">
+                                <span class="secondary-color">최대 혜택 견적</span>을 위한 정보를 입력해주세요.
+                            </div>
+                            <div class="row align-items-center justify-content-center g-0 mt-5">
+                                <div class="col-md-auto mx-2">
+                                    <div class="inputWrap"><input type="text" class="form_control" id="frmS02Name" name="frmS02Name" placeholder="이름"></div>
+                                    <div class="inputInfoTextCell fw-700 ls-1 showPolicyWin text-center mt-2">
+                                        <input id="privacyAgree2" name="check" class="checkMain" type="checkbox" onclick="return false;">
+                                        <label for="privacyAgree2" data-bs-toggle="modal" data-bs-target="#privacyPopup" class="fw-600">개인정보 수집·이용 및 제공 동의</label>
+                                        <span class="btnViewPolicy" data-bs-toggle="modal" data-bs-target="#privacyPopup">보기</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-auto">
+                                    <div class="inputWrap">
+                                        <label for="first-number" class="soundonly">휴대폰 앞자리</label>
+                                        <select aria-label="first-number" class="phoneHeadSelector">
+                                            <option value="010" selected="">010</option>
+                                            <option value="011">011</option>
+                                            <option value="016">016</option>
+                                            <option value="017">017</option>
+                                            <option value="018">018</option>
+                                            <option value="019">019</option>
+                                        </select>
+                                        <input type="text" id="frmS02Mphone" name="frmS02Mphone" class="phoneInput" placeholder="12345678">
+                                    </div>
+                                    <div class="inputInfoTextCell fw-600 ls-1 text-center mt-2">* 휴대폰 번호는 (-) 없이 숫자만 입력해주세요!</div>
+                                </div>
+                            </div>
+                            <button type="button" id="btnSubmitS02" class="btnCompare mt-5">최대 사은품 견적 받기</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Informational Content Section: Long-form Content for SEO -->
+        <section class="content-section">
+            <div class="container">
+                <h2 class="section-heading">KT 인터넷TV 가입 심화 가이드: 2026년 최신 정보 및 내돈내산 후기</h2>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <article>
+                            <h3 class="fw-bold text-dark mb-3">KT 인터넷TV 결합상품의 장점과 단점: 가족 구성원에 따른 분석</h3>
+                            <p>KT 인터넷TV 가입 시 <span class="primary-color">결합상품</span>은 <span class="primary-color">KT 인터넷TV 가입</span>의 <span class="primary-color">장점</span>을 극대화하는 방법입니다. <span class="secondary-color">KT 휴대폰 결합 할인</span>을 통해 <span class="primary-color">인터넷 요금</span>을 면제받거나, 가족 구성원 수에 따라 추가 할인을 받을 수 있습니다. <span class="highlight">KT 인터넷 가입 후기</span>를 보면, 2인 가구부터 4인 이상 가구까지 <span class="primary-color">결합상품</span>을 통해 <span class="accent-color">KT 인터넷 비용</span>을 절약한 사례가 많습니다.</p>
+                            <p><strong>장점:</strong> <span class="primary-color">KT 인터넷TV 가입 비용</span> 절감. <span class="primary-color">KT 인터넷TV 요금제</span>와 <span class="primary-color">휴대폰 요금</span>을 합쳐 <span class="highlight">총 통신비</span>를 낮출 수 있습니다. 특히 <span class="secondary-color">KT 기가인터넷</span>을 이용하면서도 저렴한 <span class="primary-color">KT 인터넷 가격</span>으로 이용 가능합니다. <span class="primary-color">KT 인터넷TV 가입 전문 업체</span>를 통하면 <span class="primary-color">현금지원 금액</span>까지 더해져 <span class="primary-color">KT 인터넷TV 가입</span>의 매력이 높아집니다.</p>
+                            <p><strong>단점:</strong> <span class="primary-color">결합상품</span>은 약정 기간(보통 3년) 내에 해지 시 <span class="primary-color">위약금</span>이 발생할 수 있습니다. <span class="secondary-color">KT 인터넷TV 가입</span>을 결정하기 전에 <span class="primary-color">KT 인터넷TV 가입 장단점</span>을 명확히 파악하고, 약정 기간 동안의 가족 구성원 변화 가능성을 고려해야 합니다. 또한 <span class="highlight">SKT, LGU+</span> 등 경쟁사와 비교했을 때, <span class="primary-color">KT 인터넷TV 가입 순위</span>가 높은 업체를 선택하더라도 <span class="primary-color">결합 할인율</span>이 개인 조건에 따라 다를 수 있습니다.</p>
+
+                            <h3 class="fw-bold text-dark mt-5">KT 인터넷TV 요금제 선택 가이드: 2026년 최신 정보</h3>
+                            <p>KT는 다양한 <span class="primary-color">인터넷 요금제</span>와 <span class="primary-color">TV 요금제</span>를 제공합니다. <span class="secondary-color">KT 인터넷TV 가입</span> 시 요금제를 어떻게 선택하느냐에 따라 <span class="primary-color">KT 인터넷 비용</span>이 크게 달라집니다. <span class="highlight">인터넷 요금제</span>는 100M, 500M, 1G로 나뉘며, <span class="primary-color">TV 요금제</span>는 채널 수에 따라 <span class="primary-color">Genie TV 베이직, 라이트, 에센스</span> 등으로 구분됩니다.</p>
+                            <p><strong>100M (슬림 인터넷):</strong> 웹 서핑, 간단한 동영상 시청에 적합. <span class="primary-color">KT 인터넷TV 가입</span> 시 가장 <span class="accent-color">저렴한 요금제</span>입니다. <span class="primary-color">KT 인터넷 가격</span>이 중요한 1인 가구 또는 사용량이 적은 가구에 <span class="primary-color">KT 인터넷 추천</span>합니다.</p>
+                            <p><strong>500M (기가 콤팩트):</strong> 고화질 OTT (넷플릭스, 유튜브) 시청, 온라인 게임에 적합. 대부분의 <span class="secondary-color">KT 인터넷 가입 후기</span>에서 가장 많이 선택하는 <span class="primary-color">KT 인터넷 요금제</span>입니다. 2~3인 가구에 적합하며, <span class="primary-color">KT 인터넷TV 가입</span> 시 <span class="primary-color">현금지원 금액</span>도 높게 책정됩니다.</p>
+                            <p><strong>1G (기가 인터넷):</strong> AI 기반 서비스 이용, 대용량 파일 다운로드, 4K/8K 동영상 스트리밍, 재택근무가 많은 가구에 필수. <span class="primary-color">KT 기가인터넷</span>을 통해 최상의 속도를 경험할 수 있으며, <span class="primary-color">KT 인터넷 가격</span>이 가장 높지만 <span class="primary-color">현금지원</span> 금액도 가장 높습니다.</p>
+
+                            <h3 class="fw-bold text-dark mt-5">KT 인터넷TV 사은품 및 현금지원, 2026년 가입 혜택 극대화 전략</h3>
+                            <p>KT 인터넷TV 가입 시 <span class="secondary-color">현금지원</span>은 <span class="primary-color">KT 인터넷 가입 전문 업체</span>를 통해 최대화할 수 있습니다. <span class="primary-color">KT 인터넷TV 가입</span>을 결정하기 전에 <span class="primary-color">KT 인터넷TV 비교</span>를 통해 <span class="primary-color">KT 인터넷 싼곳</span>을 찾아야 합니다. <span class="highlight">현금지원 금액</span>은 통신사 본사, 온라인 대리점, 오프라인 매장마다 차이가 있으며, 특히 <span class="primary-color">KT 인터넷 가입 순위</span>가 높은 온라인 대리점은 높은 <span class="primary-color">현금지원</span>을 제공합니다.</p>
+                            <p>2026년에는 <span class="secondary-color">AI 기반 상담 서비스</span>(챗지피티 등)를 이용하는 고객이 증가하면서, <span class="primary-color">KT 인터넷TV 가입</span> 시 <span class="primary-color">사은품</span> 정보도 실시간으로 비교하는 것이 중요합니다. <span class="primary-color">KT 인터넷TV 가입</span>을 고려하는 고객이라면 <span class="accent-color">KT 인터넷TV 가입 후기</span>를 통해 <span class="primary-color">내돈내산</span>으로 받은 <span class="primary-color">사은품</span> 정보를 참고하는 것이 좋습니다. 저희 사이트는 <span class="primary-color">KT 인터넷TV 가입 전문 업체</span>로, <span class="primary-color">KT 인터넷 가입</span> 시 <span class="primary-color">최대 현금지원</span>을 제공하며, <span class="primary-color">KT 인터넷 가입 순위</span>에서도 높은 평가를 받고 있습니다.</p>
+
+                            <h3 class="fw-bold text-dark mt-5">KT 인터넷TV 가입 시 유의사항: '함께 많이 찾는' 정보 분석</h3>
+                            <p>KT 인터넷TV 가입 시 <span class="primary-color">KT 인터넷TV 가입 전문 업체</span>를 선택하는 것이 중요합니다. <span class="primary-color">KT 인터넷TV 가입 순위</span>를 확인할 때 <span class="primary-color">SKT, LGU+</span>와 비교하여 <span class="primary-color">KT 인터넷 비용</span>을 절감하는 방법을 찾아야 합니다. 또한 <span class="secondary-color">KT 인터넷TV 가입</span>을 위한 <span class="primary-color">사은품</span>은 <span class="primary-color">현금지원</span> 금액 외에도 <span class="primary-color">상품권</span>이나 <span class="primary-color">기타 사은품</span>으로 제공될 수 있습니다. <span class="highlight">KT 인터넷 가입 내돈내산 후기</span>를 보면, <span class="primary-color">사은품</span>의 종류와 <span class="primary-color">현금지원</span> 금액을 꼼꼼히 비교하여 <span class="primary-color">KT 인터넷TV 가입</span>을 결정합니다.</p>
+                            <p>특히 <span class="primary-color">KT 인터넷TV 가입</span> 시 <span class="primary-color">약정 기간</span>(보통 3년)과 <span class="primary-color">위약금</span> 규정을 명확히 확인해야 합니다. <span class="primary-color">KT 인터넷TV 가입</span>을 통해 <span class="primary-color">KT 인터넷 비용</span>을 절감하려는 고객이라면 <span class="secondary-color">KT 인터넷TV 가입 장단점</span>을 명확히 파악하고, <span class="primary-color">KT 인터넷TV 견적</span>을 여러 업체에서 비교하여 <span class="primary-color">KT 인터넷 싼곳</span>을 선택하는 것이 현명합니다. 저희 사이트는 <span class="primary-color">KT 인터넷TV 가입 전문 업체</span>로, <span class="primary-color">KT 인터넷TV 가입</span>을 위한 <span class="primary-color">최대 사은품</span>과 <span class="primary-color">현금지원</span>을 제공합니다.</p>
+
+                            <!-- Regional Keywords Insertion (for 20k character count) -->
+                            <h4 class="fw-bold text-dark mt-5">KT 인터넷TV 가입: 전국 지역별 설치 및 혜택 비교</h4>
+                            <p>KT는 <span class="primary-color">인터넷TV 가입</span>을 원하는 <span class="secondary-color">전국 지역명 키워드</span>를 망라하여 설치 서비스를 제공합니다. <span class="highlight">서울</span>특별시, <span class="highlight">부산</span>광역시, <span class="highlight">대구</span>광역시, <span class="highlight">인천</span>광역시, <span class="highlight">광주</span>광역시, <span class="highlight">대전</span>광역시, <span class="highlight">울산</span>광역시, <span class="highlight">세종</span>시 등 주요 광역시는 물론 <span class="highlight">경기</span>도 <span class="accent-color">수원시</span>, <span class="accent-color">용인시</span>, <span class="accent-color">고양시</span>, <span class="accent-color">성남시</span>, <span class="accent-color">부천시</span>, <span class="accent-color">안산시</span>, <span class="accent-color">화성시</span>, <span class="accent-color">남양주시</span>, <span class="accent-color">평택시</span> 등 인구 밀집 지역에서도 <span class="primary-color">KT 기가인터넷</span> 설치가 원활합니다.</p>
+                            <p>또한 <span class="highlight">충남 천안시</span>, <span class="highlight">충남 아산시</span>, <span class="highlight">경남 창원시</span>, <span class="highlight">경남 김해시</span>, <span class="highlight">경남 양산시</span>, <span class="highlight">경북 포항시</span>, <span class="highlight">경북 구미시</span>, <span class="highlight">충북 청주시</span>, <span class="highlight">강원 춘천시</span> 등 지방 대도시 및 중소도시에서도 <span class="primary-color">KT 인터넷TV 가입</span>이 활발하게 이루어지고 있습니다. <span class="secondary-color">KT 인터넷TV 가입 전문 업체</span>를 통하면 <span class="primary-color">지역별 맞춤형 혜택</span>을 받을 수 있으며, <span class="primary-color">KT 인터넷 가입 순위</span>가 높은 업체를 통해 <span class="primary-color">KT 인터넷TV 가입</span>을 결정하는 것이 좋습니다. <span class="highlight">네이버 웹사이트 영역</span>에서 <span class="primary-color">KT 인터넷TV 가입</span>을 검색하는 고객들은 <span class="primary-color">지역별 사은품</span> 차이를 중요하게 여깁니다.</p>
+                            <p class="mt-5 text-center"><span class="secondary-color">KT 인터넷TV 가입</span>, 전문가의 도움을 받아 현명하게 선택하세요. 지금 바로 <span class="primary-color">KT 인터넷TV 비교 추천</span> 서비스를 이용해보세요.</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
-  </body>
-</html>
+
+    <!-- Modal for Privacy Policy (from original code) -->
+    <div class="modal fade" id="privacyPopup" tabindex="-1" aria-labelledby="privacyPopupLabel" aria-hidden="false">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                    <div class="contWin">
+                        <svg class="btnClosePopup" data-bs-dismiss="modal"   xmlns="http://www.w3.org/2000/svg"  width="30" height="30"   viewBox="0 0 30 30">
+                            <line x1="5" y1="5" x2="25" y2="25" stroke="black" stroke-width="2" />
+                            <line x1="25" y1="5" x2="5" y2="25" stroke="black" stroke-width="2" />
+                        </svg>
+                        <div class="popupTitle">개인(신용)정보 수집,이용,제공 동의서</div>
+                        <div class="scrollWrap">
+                            <div class="privacyInfoText">
+                                상품 서비스 안내 등을 위하여 본인의 개인(신용)정보를 수집, 이용하거나 제 3자에게 제공하는 경우에는 개인정보보호법 제 15조 제 1항 제 1호, 제 17조 제 1항 제1호, 제 22조의 3항, 신용정보의 이용 및 보호에 관한 법률 제 15조 제 2항, 제 32조 1항, 제 33조 및 제 34조에 따라 본인의 동의가 필요합니다.
+                            </div>
+                            <div class="agreeAllCell"><span>개인(신용)정보의 처리에 대한 동의</span> <input class="checkAll" type="checkbox"> 전체동의</div>
+                            <div class="agreeContWrap">
+                                <div class="agreeBox">
+                                    <div class="titleCell">1. 개인정보 수집 및 이용에 대한 동의<span>[필수]</span> <input class="agreeChk1" type="checkbox"></div>
+                                    <div class="agreeTextCell">
+                                        <span class="bold">□ 개인(신용)정보의 수집 · 이용에 관한 사항</span><br>
+                                        <span class="bold">① 개인(신용)정보의 수집ㆍ이용 목적</span><br>
+                                        : KT 인터넷TV 가입 견적 서비스 제공 및 만기 안내<br>
+                                        <span class="bold">② 개인(신용)정보의 수집 · 이용 항목</span><br>
+                                        : 이름, 연락처, 생년월일<br>
+                                        <span class="bold">③ 개인정보 보유 및 이용기간</span><br>
+                                        : 동의일로부터 5년간 보유<br>
+                                        ※ 개인정보 수집 이용에 동의하지 않을 수 있으나, 미동의 시 상담이 불가합니다.
+                                    </div>
+                                </div>
+
+                                <div class="agreeBox">
+                                    <div class="titleCell">2. 개인정보 처리위탁 동의<span>[필수]</span> <input class="agreeChk2" type="checkbox"></div>
+                                    <div class="agreeTextCell">
+                                        □ 이용자의 개인정보를 사전 동의없이 제 3자에게 제공하지 않습니다.<br>
+                                        □ 이용자의 사전 동의에 따라 해당 개인정보가 제 3자에게 제공되는 경우는 다음과 같습니다.<br>
+                                        <span class="bold">① 제공받는 자</span><br>
+                                        : <br>
+                                        <span class="bold">② 제공받는 자의 이용 목적</span><br>
+                                        : KT 인터넷TV 가입 견적 서비스 제공 및 만기 안내, 제3자의 상품 또는 서비스에 대한 개인 맞춤 광고 정보를 전송<br>
+                                        KT 인터넷TV 가입, 결합상품 상담<br>
+                                        ㈜인터넷가입 비교센터 서비스 제공 및 만기 안내, 통신 상품에 대한 안내<br>
+                                        <br>
+                                        <span class="bold">③ 제공항목</span><br>
+                                        : 이름, 연락처, 생년월일<br>
+                                        <span class="bold">④ 제공받는 자의 개인정보보유 및 이용기간</span><br>
+                                        : 동의일로부터 5년간 보유 <br>
+                                        ※ 개인정보 수집 이용에 동의하지 않을 수 있으나, 미동의 시 상담이 불가합니다.
+                                    </div>
+                                </div>
+
+                                <div class="agreeBox">
+                                    <div class="titleCell">
+                                        3. 마케팅 광고 활용 동의<span>[선택]</span> <input class="agreeChk3" type="checkbox">
+                                    </div>
+                                    <div class="agreeTextCell">
+                                        <span class="bold">① 제공받는 자</span><br>
+                                        <br>
+                                        <span class="bold">② 제공받는 자의 이용 목적</span><br>
+                                        상품 또는 서비스에 대한 개인 맞춤 광고 정보를 전송<br>
+                                        <span class="bold">③ 제공항목</span><br>
+                                        이름, 연락처, 생년월일 <br>
+                                        <span class="bold">④ 제공받는 자의 개인정보보유 및 이용기간</span><br>
+                                        동의일로부터 5년까지<br>
+                                        ※ 단, 관계법령에 의한 정보보유의 경우 해당 법령에서 명시한 기간 동안 보유<br>
+                                        상기 개인정보는 사용자에게 유상 제공 됩니다.
+                                    </div>
+                                </div>
+                            </div><!--//agreeContWrap-->
+
+                            <div class="privacyInfoText">
+                                □ 안내수단 : 문자메시지,이메일,전화 등<br>
+                                □ 제3자 정보제공의 동의 철회<br>
+                                본 동의서에 동의하신 고객 중 제 3자 정보제공을 철회하고 싶은 경우 이미 제 3자에게 제공된 개인정보라 하더라도, 언제든지 삭제를 요구할 수 있습니다.<br>
+                                고객님께서는 동의를 거부하실 수 있으며, 동의 거부 시 다양한 상품 및 이벤트 안내 등의 서비스가 제한됩니다.
+                            </div>
+                        </div>
+                        <div class="btnConfirm" data-bs-dismiss="modal">확인</div>
+                    </div><!--//contWin-->
+            </div>
+        </div>
+    </div>
+
+    <!-- JS here -->
+    <script type="text/javascript" src="https://nawaracar.com/theme/barit/js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://nawaracar.com/theme/barit/js/preloader.js"></script>
+    <script type="text/javascript" src="https://nawaracar.com/theme/barit/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="https://nawaracar.com/theme/barit/js/jquery.smoothscroll.min.js"></script>
+    <script type="text/javascript" src="https://nawaracar.com/theme/barit/js/jquery.counterup.min.js"></script>
+    <script type="text/javascript" src="https://nawaracar.com/theme/barit/js/jquery.nice-select.min.js"></script>
+    <script type="text/javascript" src="https://nawaracar.com/theme/barit/js/custom.js"></script>
+
+    <script>
+        // JS Logic (keep existing functionality for forms and data submission)
+
+        $(document).ready(function () {
+            // 팝업 열고닫기 - using jQuery show/hide
+            $(".btnViewPolicy, .showPolicyWin, label[for='agree_chk']").on("click", function (e) {
+                e.preventDefault(); // Prevent default behavior
+                $("#privacyPopup").show();
+            });
+
+            $("#privacyPopup .btnClosePopup, #privacyPopup .btnConfirm").on("click", function () {
+                $("#privacyPopup").hide();
+            });
+
+            // 체크설정
+            $("#privacyPopup .checkAll").on("click", function () {
+                if ($(this).prop("checked") == true) {
+                    $("#privacyPopup .agreeContWrap input[type=checkbox]").prop("checked", true);
+                } else {
+                    $("#privacyPopup .agreeContWrap input[type=checkbox]").prop("checked", false);
+                }
+
+                setParentAgree();
+            });
+
+            $("#privacyPopup .agreeContWrap input[type=checkbox]").on("click", function () {
+                var allChk = true;
+                $("#privacyPopup .agreeContWrap input[type=checkbox]").each(function () {
+                    if ($(this).prop("checked") == false) {
+                        allChk = false;
+                    }
+                });
+
+                if (allChk == false) {
+                    $("#privacyPopup .checkAll").prop("checked", false);
+                } else {
+                    $("#privacyPopup .checkAll").prop("checked", true);
+                }
+
+                setParentAgree();
+            });
+
+            // Allow checkbox to be checked
+            $(".checkMain").on("click", function (e) {
+                e.stopPropagation(); // Prevent event from bubbling up
+            });
+        });
+
+        function setParentAgree() {
+            if ($(".agreeChk1").prop("checked") == true && $(".agreeChk2").prop("checked") == true) {
+                $(".checkMain").prop("checked", true);
+            } else {
+                $(".checkMain").prop("checked", false);
+            }
+        }
+
+        document.addEventListener('scroll', function () {
+            const scrollPosition = window.scrollY || window.pageYOffset;
+            const sideForms = document.querySelectorAll('.sideForm');
+
+            // Adjust scroll threshold for sideForm visibility based on new content length
+            const scrollThreshold = 100; // Keep side form visible near top
+
+            if (scrollPosition > scrollThreshold) {
+                sideForms.forEach(function (sideForm) {
+                    sideForm.classList.remove('on');
+                });
+            } else {
+                sideForms.forEach(function (sideForm) {
+                    sideForm.classList.add('on');
+                });
+            }
+        });
+
+        //submit logic from original code (adapted for new form structure)
+        $(document).ready(function () {
+            $("input[name=mphone]").keyup(function (event) {
+                var inputVal = $(this).val();
+                $(this).val(inputVal.replace(/[^0-9]/gi, ''));
+            });
+
+            $("#btnSubmitS01")
+                .off("click.S01")
+                .on("click.S01", function () {
+                    const frmS01Name = $("#frmS01Name").val();
+                    const phoneMHead = $(".phoneHeadSelector_m").val(); // 앞자리 선택값(010, 011 등)
+                    const phoneMNumber = $("#frmS01Mphone").val(); // 나머지 번호
+                    const frmS01Mphone = phoneMHead + phoneMNumber; // 전체 전화번호 조합
+                    const hasChecked = $("#privacyAgree3").prop("checked");
+                    submitForm(1, frmS01Name, frmS01Mphone, hasChecked);
+                });
+
+            $("#btnSubmitS02")
+                .off("click.S02")
+                .on("click.S02", function () {
+                    const frmS02Name = $("#frmS02Name").val();
+                    const phoneHead = $(".phoneHeadSelector").val(); // 앞자리 선택값(010, 011 등)
+                    const phoneNumber = $("#frmS02Mphone").val(); // 나머지 번호
+                    const frmS02Mphone = phoneHead + phoneNumber; // 전체 전화번호 조합
+                    const hasChecked = $("#privacyAgree2").prop("checked");
+                    submitForm(2, frmS02Name, frmS02Mphone, hasChecked);
+                });
+
+            //팝업 열고닫기
+            $(".btnViewPolicy, .showPolicyWin").on("click", function () {
+                $("#privacyPopup").show();
+            });
+            $("#privacyPopup .btnClosePopup, #privacyPopup .btnConfirm").on("click", function () {
+                $("#privacyPopup").hide();
+            });
+        });
+
+        const paramReferer = '';
+        const paramCampUid = '';
+        const paramUtmMedium = '';
+
+        //기본 데이터 로드
+        function loadData() {
+            const async = $.Deferred();
+            $.ajax({
+                url: 'https://db.siwoomarketing.com/api/index.php?ctrl=landing.info',
+                type: 'post',
+                dataType: 'json',
+                data: {land_uid: "9"}, // Placeholder land_uid
+                success: function (data) {
+                    async.resolve(data);
+                },
+                error: function (err) {
+                    async.reject(err);
+                },
+            });
+
+            return async.promise();
+        }
+
+        async function submitForm(formType = 1, userName, userPhone, isChecked = false) {
+            let loadInitData;
+            let param = {};
+
+            let sms_title;
+            let sms_msg;
+            let sms_broadcast;
+            let sms_use_customer;
+            let sms_use_broadcast;
+            let user_id;
+            let land_uid;
+            try {
+                loadInitData = await loadData();
+                sms_title = loadInitData["extra"]["config"]["sms_title"];
+                sms_msg = loadInitData["extra"]["config"]["sms_msg"];
+                sms_broadcast = loadInitData["extra"]["config"]["sms_broadcast"];
+                sms_use_customer = loadInitData["extra"]["config"]["sms_use_customer"];
+                sms_use_broadcast = loadInitData["extra"]["config"]["sms_use_broadcast"];
+                user_id = loadInitData["extra"]["config"]["user_id"];
+                land_uid = loadInitData["extra"]["config"]["land_uid"];
+            } catch (e) {
+                console.log(e);
+                alert("폼 제출에 실패했습니다. 잠시 후 다시 시도해주세요.");
+                return;
+            }
+
+            if (!isChecked) {
+                alert("약관 동의 후 가능합니다.");
+                const myModal = new bootstrap.Modal(document.getElementById('privacyPopup'));
+                myModal.show();
+                return;
+            }
+
+            // 이벤트 SMS 수신 동의 처리
+            let eventSmsFlag = $("#privacyPopup .agreeChk3").prop("checked") ? "Y" : "N";
+            $("input[name=rcv_event_sms]").val(eventSmsFlag);
+
+            // 폼 데이터 직렬
+            let resultData;
+
+            // 성공 처리 방식 설정
+            let successAction = {
+                url: "/success/complete.php",
+                showAlert: formType > 0, // 폼2,3만 알림 표시
+                reload: formType > 0     // 폼2,3만 새로고침
+            };
+
+            param["inqType"] = 2;
+            param["smsTitle"] = sms_title;
+            param["smsMsg"] = sms_msg;
+            param["msgType"] = "mms";
+            param["smsBroadcastNumber"] = sms_broadcast;
+            param["smsSendYN"] = sms_use_customer;
+            param["smsSendBroadcastYN"] = sms_use_broadcast;
+            param["user_id"] = user_id;
+            param["land_uid"] = land_uid;
+
+            //TODO 이벤트 태그
+            param["rcv_event_sms"] = "Y";
+            param["content"] = "";
+            param["returnUrl"] = "";
+            param["refererUrl"] = paramReferer;
+            param["campUid"] = paramCampUid;
+            param["utmMedium"] = paramUtmMedium;
+            param["showCompleteAlertMsg"] = "Y";
+            param["name"] = userName;
+            param["mphone"] = userPhone;
+
+            try {
+                resultData = await submitFormProc(param);
+                if (resultData["returnCode"]) {
+                    if (successAction.showAlert) {
+                        alert("신청이 완료되었습니다.");
+                    }
+                    if (successAction.reload) {
+                        document.location.reload();
+                    } else {
+                        document.location.href = successAction.url;
+                    }
+                } else {
+                    alert(resultData["returnMsg"]);
+                }
+            } catch (e) {
+                alert("서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+                return;
+            }
+
+            return false;
+        }
+
+        function submitFormProc(param) {
+            const async = $.Deferred();
+            // AJAX 요청
+            $.ajax({
+                url: "https://db.siwoomarketing.com/api/index.php?ctrl=inq.regist",
+                type: "post",
+                dataType: "json",
+                data: param
+                , success: function (data) {
+                    async.resolve(data);
+                },
+                error: function (err) {
+                    async.reject(err);
+                }
+            });
+            return async.promise();
+        }
+
+        // Real-time list rolling function (if needed) - keep placeholder if original code has it, but focus on content now.
+        function rollRealTimeList() {
+            // Placeholder for real-time list rolling logic
+        }
+    </script>
+  
